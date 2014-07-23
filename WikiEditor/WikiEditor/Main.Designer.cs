@@ -30,13 +30,13 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.codeTab = new System.Windows.Forms.TabPage();
-            this.previewTab = new System.Windows.Forms.TabPage();
             this.codeTB = new System.Windows.Forms.TextBox();
+            this.previewTab = new System.Windows.Forms.TabPage();
             this.previewBrowser = new System.Windows.Forms.WebBrowser();
-            this.aboutTab = new System.Windows.Forms.TabPage();
             this.settingsTab = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.languageCB = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.aboutTab = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.codeTab.SuspendLayout();
             this.previewTab.SuspendLayout();
@@ -55,6 +55,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1312, 750);
             this.tabControl.TabIndex = 0;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // codeTab
             // 
@@ -67,6 +68,15 @@
             this.codeTab.Text = "Code";
             this.codeTab.UseVisualStyleBackColor = true;
             // 
+            // codeTB
+            // 
+            this.codeTB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeTB.Location = new System.Drawing.Point(3, 3);
+            this.codeTB.Multiline = true;
+            this.codeTB.Name = "codeTB";
+            this.codeTB.Size = new System.Drawing.Size(1298, 712);
+            this.codeTB.TabIndex = 0;
+            // 
             // previewTab
             // 
             this.previewTab.Controls.Add(this.previewBrowser);
@@ -78,15 +88,6 @@
             this.previewTab.Text = "Preview";
             this.previewTab.UseVisualStyleBackColor = true;
             // 
-            // codeTB
-            // 
-            this.codeTB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.codeTB.Location = new System.Drawing.Point(3, 3);
-            this.codeTB.Multiline = true;
-            this.codeTB.Name = "codeTB";
-            this.codeTB.Size = new System.Drawing.Size(1298, 712);
-            this.codeTB.TabIndex = 0;
-            // 
             // previewBrowser
             // 
             this.previewBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -95,15 +96,6 @@
             this.previewBrowser.Name = "previewBrowser";
             this.previewBrowser.Size = new System.Drawing.Size(1298, 712);
             this.previewBrowser.TabIndex = 0;
-            // 
-            // aboutTab
-            // 
-            this.aboutTab.Location = new System.Drawing.Point(4, 28);
-            this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(1304, 718);
-            this.aboutTab.TabIndex = 2;
-            this.aboutTab.Text = "About";
-            this.aboutTab.UseVisualStyleBackColor = true;
             // 
             // settingsTab
             // 
@@ -115,15 +107,6 @@
             this.settingsTab.TabIndex = 3;
             this.settingsTab.Text = "Settings";
             this.settingsTab.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Select Language:";
             // 
             // languageCB
             // 
@@ -139,6 +122,24 @@
             this.languageCB.Sorted = true;
             this.languageCB.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Select Language:";
+            // 
+            // aboutTab
+            // 
+            this.aboutTab.Location = new System.Drawing.Point(4, 28);
+            this.aboutTab.Name = "aboutTab";
+            this.aboutTab.Size = new System.Drawing.Size(1304, 718);
+            this.aboutTab.TabIndex = 2;
+            this.aboutTab.Text = "About";
+            this.aboutTab.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -146,7 +147,7 @@
             this.ClientSize = new System.Drawing.Size(1312, 750);
             this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WikiEditor";
