@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace WikiEditor
@@ -24,7 +19,7 @@ namespace WikiEditor
         private void setDefaults()
         {
             languageCB.SelectedIndex = 0;
-            codeTB.Text = "<h1>Hello World</h1>\r\n<p>Welcome to the WikiEditor</p>";
+            codeTB.Text = "<h1>Hello World</h1>\r\n<p>Welcome to the WikiEditor</p>\r\n==Hello World==\r\nWelcome to the WikiEditor";
             previewBrowser.DocumentText = codeTB.Text;
         }
 
@@ -35,14 +30,7 @@ namespace WikiEditor
                 case 0:
                     break;
                 case 1:
-                    if (languageCB.SelectedItem.ToString().Equals("HTML"))
-                    {
-                        previewBrowser.DocumentText = codeTB.Text;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Not HTML");
-                    }
+                    previewCode(languageCB.SelectedItem.ToString());
                     break;
             }
         }
@@ -50,6 +38,32 @@ namespace WikiEditor
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             clickListener(tabControl.SelectedIndex);
+        }
+
+        private void previewCode(String code)
+        {
+            switch (code)
+            {
+                case "HTML":
+                    previewBrowser.DocumentText = codeTB.Text;
+                    break;
+                case "WikiCreole":
+                    String originalContent = codeTB.Text;
+                    String content = "";
+                    RegexOptions options = RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline;
+
+                    content = Regex.Replace(originalContent, "^==", "<h1>", options);
+                    content = Regex.Replace(content, "==", "</h1>", options);
+
+                    content = Regex.Replace(content, "^//", "<i>", options);
+                    content = Regex.Replace(content, "//", "</i>", options);
+
+                    content = Regex.Replace(content, "^" + Regex.Escape("**"), "<b>", options);
+                    content = Regex.Replace(content, Regex.Escape("**"), "</b>", options);
+
+                    previewBrowser.DocumentText = content;
+                    break;
+            }
         }
     }
 }
